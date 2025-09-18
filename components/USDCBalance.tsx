@@ -4,6 +4,7 @@ import { useState, useEffect, useImperativeHandle, forwardRef } from "react";
 import { useKeypairStore } from "@/app/utils/keypair";
 import { getDevnetUSDCBalance } from "@/app/utils";
 import { address } from "@solana/kit";
+import { RefreshCw } from "lucide-react";
 
 export interface USDCBalanceHandle {
   refresh: () => Promise<void>;
@@ -55,6 +56,14 @@ export const USDCBalance = forwardRef<USDCBalanceHandle>((_, ref) => {
           `${balance?.toFixed(2) ?? "0.00"} USDC`
         )}
       </span>
+      <button
+        onClick={fetchBalance}
+        disabled={isLoading}
+        className="ml-1 p-1 hover:bg-secondary rounded-full transition-colors disabled:opacity-50"
+        title="Refresh balance"
+      >
+        <RefreshCw className={`w-3 h-3 ${isLoading ? 'animate-spin' : ''}`} />
+      </button>
     </div>
   );
 });
