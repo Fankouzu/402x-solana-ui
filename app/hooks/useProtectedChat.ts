@@ -9,6 +9,10 @@ import { getDevnetUSDCBalance } from "../utils";
 import { address } from "@solana/kit";
 import type { UIMessage } from "ai";
 
+interface MessageWithTxSig extends UIMessage {
+  txSignature?: string;
+}
+
 interface PaymentInfo {
   amount: string;
   signature?: string;
@@ -16,7 +20,7 @@ interface PaymentInfo {
 }
 
 interface UseProtectedChatReturn {
-  messages: UIMessage[];
+  messages: MessageWithTxSig[];
   sendMessage: (message: { text: string; files?: any[] }) => Promise<void>;
   status: "idle" | "loading" | "error";
   error: string | null;
@@ -24,7 +28,7 @@ interface UseProtectedChatReturn {
 }
 
 export function useProtectedChat(): UseProtectedChatReturn {
-  const [messages, setMessages] = useState<UIMessage[]>([]);
+  const [messages, setMessages] = useState<MessageWithTxSig[]>([]);
   const [status, setStatus] = useState<"idle" | "loading" | "error">("idle");
   const [error, setError] = useState<string | null>(null);
   const [paymentInfo, setPaymentInfo] = useState<PaymentInfo>({
@@ -79,7 +83,7 @@ export function useProtectedChat(): UseProtectedChatReturn {
 
       try {
         // Add user message to the conversation
-        const userMessage: UIMessage = {
+        const userMessage: MessageWithTxSig = {
           id: Date.now().toString(),
           role: "user",
           parts: [{ type: "text", text: message.text }],
@@ -108,11 +112,14 @@ export function useProtectedChat(): UseProtectedChatReturn {
           );
         }
 
+        let currentTxSignature: string | undefined;
+
         // Decode payment response
         const paymentResponseHeader =
           response.headers.get("x-payment-response");
         if (paymentResponseHeader) {
           const paymentResponse = decodeXPaymentResponse(paymentResponseHeader);
+          currentTxSignature = paymentResponse.transaction || undefined;
           if (paymentResponse.success) {
             setPaymentInfo({
               amount: "$0.01",
@@ -168,6 +175,7 @@ export function useProtectedChat(): UseProtectedChatReturn {
                         id: assistantMessageId,
                         role: "assistant",
                         parts: [{ type: "text", text: assistantMessage }],
+                        txSignature: currentTxSignature,
                       },
                     ]);
                     assistantMessageCreated = true;
@@ -180,6 +188,7 @@ export function useProtectedChat(): UseProtectedChatReturn {
                           ? {
                               ...msg,
                               parts: [{ type: "text", text: assistantMessage }],
+                              txSignature: currentTxSignature,
                             }
                           : msg
                       )
