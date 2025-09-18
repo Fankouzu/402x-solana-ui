@@ -1,22 +1,22 @@
-# 402x Solana UI
+# x402 Solana AI Chat
 
-A Next.js application that demonstrates HTTP 402 Payment Required implementation using Solana blockchain for micro-payments. This app showcases pay-per-use AI chat functionality where users pay USDC for each AI interaction.
+A Next.js application implementing the **x402 protocol** - an HTTP 402 Payment Required standard for blockchain micro-payments. This app demonstrates pay-per-message AI chat functionality powered by Solana USDC payments, where users pay for each AI interaction in real-time.
 
 ## Features
 
-### 💰 Crypto Payment Integration
-- **HTTP 402 Payment Required**: Implements the x402 protocol for micro-payments
-- **Solana USDC Payments**: Uses USDC on Solana Devnet for transactions
-- **Local Keypair Management**: Generates and manages local Solana keypairs
-- **Wallet Integration**: Connects to Solana wallets (Phantom, Solflare, etc.)
-- **Real-time Balance Display**: Shows USDC balance in the header
+### 💰 x402 Protocol Integration
+- **x402 Standard**: Implements HTTP 402 Payment Required protocol for blockchain micro-payments
+- **Solana USDC Payments**: Lightning-fast payments using USDC on Solana Devnet
+- **Local Keypair Management**: Secure generation and management of Solana keypairs
+- **Wallet Integration**: Seamless connection to Solana wallets (Phantom, Solflare, etc.)
+- **Real-time Balance Display**: Live USDC balance updates with manual refresh capability
 
 ### 🤖 AI Chat Interface
-- **Pay-per-message**: Each chat message costs $0.01 USDC
+- **Pay-per-message**: Each chat message costs $0.01 USDC via x402 protocol
 - **Streaming Responses**: Real-time streaming of AI responses
 - **Balance Validation**: Pre-flight checks to ensure sufficient funds
-- **Payment Confirmation**: Visual confirmation of successful payments
-- **Transaction Transparency**: Clickable transaction signatures with explorer links
+- **Payment Confirmation**: Visual confirmation of successful x402 payments
+- **Transaction Transparency**: Persistent transaction signatures with Solscan explorer links
 
 ### 🔐 Security & User Experience
 - **Insufficient Funds Protection**: Prevents requests when balance is too low
@@ -33,11 +33,12 @@ A Next.js application that demonstrates HTTP 402 Payment Required implementation
 ## Technical Stack
 
 - **Frontend**: Next.js 15 with TypeScript
-- **Styling**: Tailwind CSS with custom components
+- **Styling**: Tailwind CSS with Solana-themed UI components
 - **Blockchain**: Solana (Devnet)
-- **Payment Protocol**: x402 HTTP Payment Required
+- **Payment Protocol**: x402 - HTTP 402 Payment Required standard
 - **Wallet**: Solana Wallet Standard integration
-- **AI**: Streaming chat responses (configurable backend)
+- **AI**: GPT-4 with streaming responses
+- **Payment Libraries**: x402-fetch, x402-next middleware
 
 ## Project Structure
 
@@ -69,11 +70,11 @@ Implements HTTP 402 Payment Required for protected routes:
 - Transaction signature generation
 
 ### useProtectedChat Hook (`app/hooks/useProtectedChat.ts`)
-Manages the entire payment → chat flow:
+Manages the entire x402 payment → chat flow:
 - Balance validation before requests
-- Payment processing with x402 protocol
-- Streaming response handling
-- Error management
+- Payment processing with x402 protocol integration
+- Streaming response handling with transaction signature storage
+- Comprehensive error management and recovery
 
 ### USDC Balance Management (`components/USDCBalance.tsx`)
 Real-time balance display:
