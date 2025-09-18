@@ -77,11 +77,7 @@ export default function Home() {
       {/* Header */}
       <header className="flex justify-between items-center px-6 py-4 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="flex items-center gap-3">
-          <img
-            src="/header.png"
-            alt="Solana"
-            className="w-8 h-8"
-          />
+          <img src="/header.png" alt="Solana" className="w-8 h-8" />
           <div>
             <h1 className="font-semibold text-lg text-foreground">
               Solana AI Chat
@@ -148,17 +144,17 @@ export default function Home() {
                   </button>
                   <button
                     onClick={() =>
-                      setInput("Tell me a funny joke about cryptocurrency")
+                      setInput("Tell me a funny joke about Solana")
                     }
                     className="px-3 py-1.5 text-xs bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-white rounded-full transition-all transform hover:scale-105"
                   >
-                    😂 Crypto jokes
+                    😂 Solana jokes
                   </button>
 
                   <button
                     onClick={() =>
                       setInput(
-                        "Explain why cats would make terrible cryptocurrency investors"
+                        "Explain why cats would make terrible memecoin investors"
                       )
                     }
                     className="px-3 py-1.5 text-xs bg-gradient-to-r from-indigo-500 to-purple-500 hover:from-indigo-600 hover:to-purple-600 text-white rounded-full transition-all transform hover:scale-105"
@@ -188,12 +184,12 @@ export default function Home() {
                   <button
                     onClick={() =>
                       setInput(
-                        "Create a conspiracy theory about AI and blockchain"
+                        "Create a conspiracy theory or lore about Solana taking over the world!"
                       )
                     }
                     className="px-3 py-1.5 text-xs bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white rounded-full transition-all transform hover:scale-105"
                   >
-                    🕵️ AI conspiracy
+                    🕵️ Solana conspiracy
                   </button>
                 </div>
               </div>
