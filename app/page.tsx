@@ -77,9 +77,11 @@ export default function Home() {
       {/* Header */}
       <header className="flex justify-between items-center px-6 py-4 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="flex items-center gap-3">
-          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-purple-600 via-blue-600 to-cyan-500 flex items-center justify-center">
-            <span className="text-white font-bold text-sm">⚡</span>
-          </div>
+          <img
+            src="/header.png"
+            alt="Solana"
+            className="w-8 h-8"
+          />
           <div>
             <h1 className="font-semibold text-lg text-foreground">
               Solana AI Chat
@@ -217,7 +219,7 @@ export default function Home() {
                         message.role === "user" ? "items-end" : "items-start"
                       }`}
                     >
-                      {message.parts.map((part, i) => {
+                      {message.parts.map((part: any, i: number) => {
                         switch (part.type) {
                           case "text":
                             return (
