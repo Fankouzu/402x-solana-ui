@@ -28,6 +28,7 @@ import {
   Send,
   AlertTriangle,
   ExternalLink,
+  Github,
   type LucideProps,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -113,6 +114,16 @@ export default function Home() {
             <FaucetIcon className="w-4 h-4" />
           </Button>
           <InternalWallet />
+          <Button variant="outline" size="icon" asChild>
+            <a
+              href="https://github.com/Fankouzu/402x-solana-ui"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="打开 GitHub 仓库"
+            >
+              <Github className="w-4 h-4" />
+            </a>
+          </Button>
           {isConnected && (
             <TransferModal
               onTransferComplete={() => usdcBalanceRef.current?.refresh()}
