@@ -42,7 +42,7 @@ export function useProtectedChat(): UseProtectedChatReturn {
 
   const sendMessage = useCallback(
     async (message: { text: string; files?: any[] }) => {
-      if (!account || !signer) {
+      if ( !signer) {
         setError("Wallet not connected or signer not available");
         setStatus("error");
         return;

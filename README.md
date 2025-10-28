@@ -1,168 +1,168 @@
 # x402 Solana AI Chat
 
-A Next.js application implementing the **x402 protocol** - an HTTP 402 Payment Required standard for blockchain micro-payments. This app demonstrates pay-per-message AI chat functionality powered by Solana USDC payments, where users pay for each AI interaction in real-time.
+一个 Next.js 应用，落实 **x402 protocol**——用于区块链微支付的 HTTP 402 Payment Required 标准。本项目演示了依托 Solana USDC 支付的按消息计费 AI 聊天体验，用户可以在每次与 AI 交互时实时付款。
 
-## Features
+## 功能
 
-### 💰 x402 Protocol Integration
-- **x402 Standard**: Implements HTTP 402 Payment Required protocol for blockchain micro-payments
-- **Solana USDC Payments**: Lightning-fast payments using USDC on Solana Devnet
-- **Local Keypair Management**: Secure generation and management of Solana keypairs
-- **Wallet Integration**: Seamless connection to Solana wallets (Phantom, Solflare, etc.)
-- **Real-time Balance Display**: Live USDC balance updates with manual refresh capability
+### 💰 x402 Protocol 集成
+- **x402 Standard**：实现面向区块链微支付的 HTTP 402 Payment Required 协议
+- **Solana USDC Payments**：在 Solana Devnet 上使用 USDC 完成极速支付
+- **Local Keypair Management**：安全生成与管理 Solana 密钥对
+- **Wallet Integration**：无缝连接 Solana 钱包（Phantom、Solflare 等）
+- **Real-time Balance Display**：实时更新 USDC 余额，并支持手动刷新
 
-### 🤖 AI Chat Interface
-- **Pay-per-message**: Each chat message costs $0.01 USDC via x402 protocol
-- **Streaming Responses**: Real-time streaming of AI responses
-- **Balance Validation**: Pre-flight checks to ensure sufficient funds
-- **Payment Confirmation**: Visual confirmation of successful x402 payments
-- **Transaction Transparency**: Persistent transaction signatures with Solscan explorer links
+### 🤖 AI Chat 界面
+- **Pay-per-message**：通过 x402 protocol 为每条消息支付 0.01 美元 USDC
+- **Streaming Responses**：实时流式返回 AI 回复
+- **Balance Validation**：请求前预检余额以确保资金充足
+- **Payment Confirmation**：直观展示成功的 x402 支付
+- **Transaction Transparency**：持久化交易签名并提供 Solscan 链接
 
-### 🔐 Security & User Experience
-- **Insufficient Funds Protection**: Prevents requests when balance is too low
-- **Payment Status Tracking**: Shows processing → completed → confirmed states
-- **Error Handling**: Graceful handling of payment failures
-- **Transaction Verification**: Links to Solscan explorer for transaction details
+### 🔐 安全与体验
+- **Insufficient Funds Protection**：当余额不足时阻止请求
+- **Payment Status Tracking**：展示 processing → completed → confirmed 状态流转
+- **Error Handling**：平滑处理支付失败场景
+- **Transaction Verification**：提供指向 Solscan 的交易验证链接
 
-### 🎨 Modern UI/UX
-- **Responsive Design**: Works on desktop and mobile devices
-- **Dark/Light Theme Support**: Clean, modern interface
-- **Real-time Updates**: Balance and payment status update automatically
-- **Professional Payment Display**: Compact, informative payment confirmations
+### 🎨 现代化 UI/UX
+- **Responsive Design**：适配桌面端与移动端
+- **Dark/Light Theme Support**：保持简洁现代的深浅色主题
+- **Real-time Updates**：余额与支付状态自动刷新
+- **Professional Payment Display**：紧凑且信息完备的支付确认视图
 
-## Technical Stack
+## 技术栈
 
-- **Frontend**: Next.js 15 with TypeScript
-- **Styling**: Tailwind CSS with Solana-themed UI components
-- **Blockchain**: Solana (Devnet)
-- **Payment Protocol**: x402 - HTTP 402 Payment Required standard
-- **Wallet**: Solana Wallet Standard integration
-- **AI**: GPT-4 with streaming responses
-- **Payment Libraries**: x402-fetch, x402-next middleware
+- **Frontend**：Next.js 15 + TypeScript
+- **Styling**：Tailwind CSS 与 Solana 主题化组件
+- **Blockchain**：Solana（Devnet）
+- **Payment Protocol**：x402 - HTTP 402 Payment Required 标准
+- **Wallet**：Solana Wallet Standard 集成
+- **AI**：GPT-4 流式响应
+- **Payment Libraries**：x402-fetch、x402-next middleware
 
-## Project Structure
+## 项目结构
 
 ```
 ├── app/
-│   ├── api/chat/           # AI chat API endpoint with payment middleware
-│   ├── hooks/              # Custom React hooks
-│   │   └── useProtectedChat.ts    # Payment-protected chat functionality
-│   ├── utils/              # Utility functions
-│   │   ├── keypair.ts      # Local keypair management
-│   │   └── index.ts        # Solana utilities (balance, transfers)
-│   ├── page.tsx            # Main chat interface
-│   └── WalletContext.tsx   # Wallet connection context
-├── components/             # Reusable UI components
-│   ├── USDCBalance.tsx     # Balance display component
-│   ├── TransferModal.tsx   # USDC transfer interface
-│   ├── ConnectWalletBtn.tsx # Wallet connection button
+│   ├── api/chat/           # 带支付中间件的 AI 聊天 API 端点
+│   ├── hooks/              # 自定义 React hooks
+│   │   └── useProtectedChat.ts    # 受支付保护的聊天逻辑
+│   ├── utils/              # 工具函数
+│   │   ├── keypair.ts      # 本地密钥对管理
+│   │   └── index.ts        # Solana 工具（余额、转账）
+│   ├── page.tsx            # 主聊天界面
+│   └── WalletContext.tsx   # 钱包连接上下文
+├── components/             # 可复用 UI 组件
+│   ├── USDCBalance.tsx     # 余额展示组件
+│   ├── TransferModal.tsx   # USDC 转账界面
+│   ├── ConnectWalletBtn.tsx # 钱包连接按钮
 │   └── ...
-├── middleware.ts           # x402 payment middleware configuration
-└── lib/                    # Utility libraries
+├── middleware.ts           # x402 支付中间件配置
+└── lib/                    # 工具库
 ```
 
-## Key Components
+## 核心组件
 
 ### Payment Middleware (`middleware.ts`)
-Implements HTTP 402 Payment Required for protected routes:
-- `/api/chat` - $0.01 per message
-- Payment validation and processing
-- Transaction signature generation
+为受保护的路由实现 HTTP 402 Payment Required：
+- `/api/chat` - 每条消息 0.01 美元
+- 支付校验与处理
+- 生成交易签名
 
 ### useProtectedChat Hook (`app/hooks/useProtectedChat.ts`)
-Manages the entire x402 payment → chat flow:
-- Balance validation before requests
-- Payment processing with x402 protocol integration
-- Streaming response handling with transaction signature storage
-- Comprehensive error management and recovery
+管理完整的 x402 支付 → 聊天流程：
+- 请求前余额校验
+- 集成 x402 protocol 的支付处理
+- 流式响应处理与交易签名存储
+- 端到端的错误管理与恢复
 
-### USDC Balance Management (`components/USDCBalance.tsx`)
-Real-time balance display:
-- Fetches balance from Solana devnet
-- Auto-refreshes after transactions
-- Shows loading states
+### USDC Balance 管理 (`components/USDCBalance.tsx`)
+实时展示余额：
+- 从 Solana Devnet 获取余额
+- 交易完成后自动刷新
+- 显示加载状态
 
-### Transfer System (`components/TransferModal.tsx`)
-Facilitates USDC transfers:
-- Transfer from connected wallet to local keypair
-- Transaction confirmation
-- Balance refresh triggers
+### Transfer 系统 (`components/TransferModal.tsx`)
+完成 USDC 转账：
+- 将资金从已连接钱包转入本地密钥对
+- 交易确认反馈
+- 触发余额刷新
 
-## Getting Started
+## 快速开始
 
-### Prerequisites
-- Node.js 18+ and pnpm
-- Solana wallet (Phantom, Solflare, etc.)
-- USDC on Solana Devnet (can be obtained from faucets)
+### 先决条件
+- Node.js 18+ 与 pnpm
+- Solana 钱包（Phantom、Solflare 等）
+- Solana Devnet 上的 USDC（可通过水龙头获取）
 
-### Installation
+### 安装
 
 ```bash
-# Clone the repository
-git clone https://github.com/pratikbuilds/402x-solana-ui.git
+# 克隆仓库
+git clone https://github.com/Fankouzu/402x-solana-ui
 cd 402x-solana-ui
 
-# Install dependencies
+# 安装依赖
 pnpm install
 
-# Run development server
+# 启动开发服务器
 pnpm dev
 ```
 
-### Usage
+### 使用指南
 
-1. **Connect Wallet**: Click "Connect Wallet" to connect your Solana wallet
-2. **Generate Local Keypair**: Create a local keypair for payments
-3. **Transfer USDC**: Transfer USDC from your wallet to the local keypair
-4. **Start Chatting**: Send messages to the AI (costs $0.01 USDC each)
-5. **View Transactions**: Click transaction signatures to view on Solscan
+1. **Connect Wallet**：点击“Connect Wallet”连接 Solana 钱包
+2. **Generate Local Keypair**：生成用于支付的本地密钥对
+3. **Transfer USDC**：将 USDC 从钱包转入本地密钥对
+4. **Start Chatting**：向 AI 发送消息（每条消耗 0.01 美元 USDC）
+5. **View Transactions**：点击交易签名在 Solscan 查看详情
 
-### Configuration
+### 配置
 
-The payment middleware is configured in `middleware.ts`:
-- **Resource Wallet**: `Du3X3wKN3LHfSbXtX2PW5jhnSHit8j8NSb19VZW6V9mu`
-- **Network**: `solana-devnet`
-- **Price per message**: `$0.01`
+支付中间件位于 `middleware.ts`：
+- **Resource Wallet**：`Du3X3wKN3LHfSbXtX2PW5jhnSHit8j8NSb19VZW6V9mu`
+- **Network**：`solana-devnet`
+- **Price per message**：`$0.01`
 
-## Payment Flow
+## 支付流程
 
-1. **Balance Check**: Validates sufficient USDC balance ($0.01 minimum)
-2. **Payment Processing**: Creates and signs payment transaction
-3. **API Request**: Sends payment header with chat request
-4. **Transaction Confirmation**: Receives transaction signature
-5. **Balance Update**: Refreshes balance after successful payment
+1. **Balance Check**：校验 USDC 余额是否满足 0.01 美元
+2. **Payment Processing**：创建并签署支付交易
+3. **API Request**：携带支付头信息发起聊天请求
+4. **Transaction Confirmation**：接收交易签名
+5. **Balance Update**：支付成功后刷新余额
 
-## Security Features
+## 安全特性
 
-- **Pre-flight Balance Validation**: Prevents insufficient fund requests
-- **Local Keypair Security**: Private keys stored locally, never transmitted
-- **Payment Verification**: All transactions verifiable on Solana blockchain
-- **Error Handling**: Graceful handling of payment failures
+- **Pre-flight Balance Validation**：防止余额不足的请求
+- **Local Keypair Security**：私钥仅存储在本地，绝不上传
+- **Payment Verification**：所有交易可在 Solana 区块链上验证
+- **Error Handling**：优雅处理支付失败
 
-## Development
+## 开发
 
-### Key Dependencies
-- `@solana/kit` - Solana blockchain interactions
-- `x402-next` - HTTP 402 middleware
-- `x402-fetch` - Payment-enabled fetch wrapper
-- `gill` - Solana utilities and explorer links
+### 关键依赖
+- `@solana/kit` - Solana 区块链交互
+- `x402-next` - HTTP 402 中间件
+- `x402-fetch` - 支付能力增强的 fetch 封装
+- `gill` - Solana 工具与探索器链接
 
-### Environment Setup
-The application uses Solana Devnet by default. No additional environment variables required for basic functionality.
+### 环境配置
+应用默认使用 Solana Devnet。基础功能无需额外环境变量。
 
-## Contributing
+## 贡献
 
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+1. Fork 仓库
+2. 创建特性分支（`git checkout -b feature/amazing-feature`）
+3. 提交改动（`git commit -m 'Add amazing feature'`）
+4. 推送分支（`git push origin feature/amazing-feature`）
+5. 发起 Pull Request
 
-## License
+## 许可证
 
-This project is MIT licensed.
+本项目采用 MIT license。
 
-## Links
+## 链接
 
 - **Repository**: https://github.com/pratikbuilds/402x-solana-ui
 - **Solana Devnet Explorer**: https://explorer.solana.com/?cluster=devnet
@@ -170,4 +170,4 @@ This project is MIT licensed.
 
 ---
 
-Built with ❤️ using Next.js and Solana
+基于 Next.js 与 Solana 构建 ❤️

@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { Address } from "@solana/kit";
 
 // Validate environment variables
-const resourceWalletAddress = "Du3X3wKN3LHfSbXtX2PW5jhnSHit8j8NSb19VZW6V9mu";
+const resourceWalletAddress = "2exSLPEPuvcwxTnbooRUo7NHhAKhDZLh36nyDgDKHYiS";
 const network = "solana-devnet";
 
 console.log("Middleware loaded!");
