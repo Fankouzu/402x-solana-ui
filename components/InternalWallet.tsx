@@ -38,29 +38,27 @@ export function InternalWallet() {
         <DialogTrigger asChild>
           <Button variant="outline" size="sm">
             <Plus className="w-4 h-4 mr-2" />
-            Generate Wallet
+            生成钱包
           </Button>
         </DialogTrigger>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>Generate Internal Wallet</DialogTitle>
+            <DialogTitle>生成内部钱包</DialogTitle>
             <DialogDescription>
-              This will create a new Solana keypair stored locally in your
-              browser.
+              这会创建一个新的 Solana 密钥对，并保存在你的浏览器本地。
               <br />
               <span className="text-orange-600 font-medium">
-                Warning: Only use for development/testing. Not secure for real
-                funds.
+                警告：仅用于开发或测试，切勿存放真实资金。
               </span>
             </DialogDescription>
           </DialogHeader>
           <div className="flex gap-2">
             <Button onClick={handleGenerateKeypair}>
               <Key className="w-4 h-4 mr-2" />
-              Generate Keypair
+              生成密钥对
             </Button>
             <Button variant="outline" onClick={() => setIsDialogOpen(false)}>
-              Cancel
+              取消
             </Button>
           </div>
         </DialogContent>
@@ -84,16 +82,16 @@ export function InternalWallet() {
       </DialogTrigger>
       <DialogContent className="max-w-2xl">
         <DialogHeader>
-          <DialogTitle>Internal Wallet</DialogTitle>
+          <DialogTitle>内部钱包</DialogTitle>
           <DialogDescription>
-            Your locally stored Solana keypair
+            你在本地保存的 Solana 密钥对
           </DialogDescription>
         </DialogHeader>
 
         <div className="space-y-4">
           {/* Public Key */}
           <div>
-            <label className="text-sm font-medium">Public Key (Address)</label>
+            <label className="text-sm font-medium">公钥（地址）</label>
             <div className="flex items-center gap-2 mt-1">
               <code className="flex-1 p-2 bg-muted rounded text-xs font-mono">
                 {publicKey}
@@ -110,12 +108,12 @@ export function InternalWallet() {
 
           {/* Signer Status */}
           <div>
-            <label className="text-sm font-medium">Signer Status</label>
+            <label className="text-sm font-medium">签名者状态</label>
             <div className="flex items-center gap-2 mt-1">
               <code className="flex-1 p-2 bg-muted rounded text-xs">
                 {signer
-                  ? "✅ Signer available in memory"
-                  : "⚠️ Signer not loaded (refresh needed)"}
+                  ? "✅ 内存中已加载签名者"
+                  : "⚠️ 未加载签名者（请刷新）"}
               </code>
             </div>
           </div>
@@ -136,10 +134,10 @@ export function InternalWallet() {
               onClick={handleClearKeypair}
             >
               <Trash2 className="w-4 h-4 mr-2" />
-              Delete Wallet
+              删除钱包
             </Button>
             <Button variant="outline" onClick={() => setIsDialogOpen(false)}>
-              Close
+              关闭
             </Button>
           </div>
         </div>

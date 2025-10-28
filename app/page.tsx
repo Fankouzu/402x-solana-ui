@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, forwardRef } from "react";
 import { useWallet } from "./WalletContext";
 import { ConnectWalletBtn } from "@/components/ConnectWalletBtn";
 import { WalletInfo } from "@/components/WalletInfo";
@@ -23,10 +23,25 @@ import {
   type PromptInputMessage,
 } from "@/components/ai-elements/prompt-input";
 import { Response } from "@/components/ai-elements/response";
-import { MessageCircle, Send, AlertTriangle, ExternalLink } from "lucide-react";
+import {
+  MessageCircle,
+  Send,
+  AlertTriangle,
+  ExternalLink,
+  type LucideProps,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { USDCBalance, type USDCBalanceHandle } from "@/components/USDCBalance";
 import { getExplorerLink } from "gill";
+import { cn } from "@/lib/utils";
+
+const FaucetIcon = forwardRef<SVGSVGElement, LucideProps>(
+  ({ className, ...props }, ref) => (
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-faucet-icon lucide-faucet"><path d="M10.22 4.9 5.4 6H5a2 2 0 0 1 0-4h.4l4.86 1" /><circle cx="12" cy="4" r="2" /><path d="m13.78 4.9 4.8 1h.4a2 2 0 0 0 0-4h-.4l-4.92 1" /><path d="M12 6v3" /><rect width="4" height="6" x="18" y="10" /><path d="M22 9v8" /><path d="M18 11h-2.6a3.87 3.87 0 0 0-6.8 0H7c-2.8 0-5 2.2-5 5v1h4v-1c0-.6.4-1 1-1h1.6a3.87 3.87 0 0 0 6.8 0H18" /><path d="M3.5 17S2 19 2 20a2 2 0 0 0 4 0c0-1-1.5-3-1.5-3" /></svg>
+  )
+);
+
+FaucetIcon.displayName = "FaucetIcon";
 
 export default function Home() {
   const { isConnected } = useWallet();
@@ -89,6 +104,14 @@ export default function Home() {
         </div>
         <div className="flex items-center gap-4">
           <USDCBalance ref={usdcBalanceRef} />
+          <Button
+            variant="outline"
+            size="icon"
+            aria-label="打开水龙头领取测试资金"
+            onClick={() => window.open("https://faucet.circle.com/", "_blank", "noopener,noreferrer")}
+          >
+            <FaucetIcon className="w-4 h-4" />
+          </Button>
           <InternalWallet />
           {isConnected && (
             <TransferModal
@@ -218,8 +241,8 @@ export default function Home() {
                               <div
                                 key={`${message.id}-${i}`}
                                 className={`rounded-2xl px-4 py-3 shadow-sm ${message.role === "user"
-                                    ? "bg-primary text-primary-foreground rounded-br-md"
-                                    : "bg-secondary text-secondary-foreground rounded-bl-md"
+                                  ? "bg-primary text-primary-foreground rounded-br-md"
+                                  : "bg-secondary text-secondary-foreground rounded-bl-md"
                                   }`}
                               >
                                 <Response className="text-sm">
@@ -342,14 +365,14 @@ export default function Home() {
                         <div className="flex gap-4 justify-center">
                           <div
                             className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs border ${paymentInfo.status === "error"
-                                ? "bg-red-50 text-red-700 border-red-200"
-                                : "bg-green-50 text-green-700 border-green-200"
+                              ? "bg-red-50 text-red-700 border-red-200"
+                              : "bg-green-50 text-green-700 border-green-200"
                               }`}
                           >
                             <div
                               className={`w-2 h-2 rounded-full ${paymentInfo.status === "error"
-                                  ? "bg-red-400"
-                                  : "bg-green-400"
+                                ? "bg-red-400"
+                                : "bg-green-400"
                                 }`}
                             ></div>
                             <span className="font-medium">
@@ -372,8 +395,8 @@ export default function Home() {
                                       )
                                     }
                                     className={`font-mono hover:underline ${paymentInfo.status === "error"
-                                        ? "text-red-600"
-                                        : "text-green-600"
+                                      ? "text-red-600"
+                                      : "text-green-600"
                                       }`}
                                     title="Click to copy transaction signature"
                                   >
@@ -388,8 +411,8 @@ export default function Home() {
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className={`p-1 hover:bg-gray-100 rounded ${paymentInfo.status === "error"
-                                        ? "text-red-600"
-                                        : "text-green-600"
+                                      ? "text-red-600"
+                                      : "text-green-600"
                                       }`}
                                     title="View transaction on Solscan"
                                   >
@@ -454,8 +477,8 @@ export default function Home() {
             {error && (
               <div
                 className={`mt-3 p-3 rounded-md text-sm border ${error.includes("Insufficient USDC balance")
-                    ? "bg-amber-50 text-amber-800 border-amber-200"
-                    : "bg-red-50 text-red-700 border-red-200"
+                  ? "bg-amber-50 text-amber-800 border-amber-200"
+                  : "bg-red-50 text-red-700 border-red-200"
                   }`}
               >
                 <div className="flex items-center gap-2">

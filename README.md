@@ -164,7 +164,7 @@ pnpm dev
 
 ## 链接
 
-- **Repository**: https://github.com/pratikbuilds/402x-solana-ui
+- **Repository**: https://github.com/Fankouzu/402x-solana-ui
 - **Solana Devnet Explorer**: https://explorer.solana.com/?cluster=devnet
 - **USDC Devnet Mint**: `4zMMC9srt5Ri5X14GAgXhaHii3GnPAEERYPJgZJDncDU`
 
