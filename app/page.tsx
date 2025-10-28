@@ -83,7 +83,7 @@ export default function Home() {
               Solana AI Chat
             </h1>
             <p className="text-xs text-muted-foreground">
-              Pay-per-message with USDC • Lightning fast
+              按条计费（使用USDC）• 闪电般快速
             </p>
           </div>
         </div>
@@ -101,7 +101,7 @@ export default function Home() {
             </TransferModal>
           )}
           {/* {isConnected && <ProtectedButton />} */}
-          {!isConnected ? <ConnectWalletBtn /> : <WalletInfo />}
+          {/* {!isConnected ? <ConnectWalletBtn /> : <WalletInfo />} */}
         </div>
       </header>
 
@@ -119,77 +119,75 @@ export default function Home() {
                   Welcome to Solana AI Chat! 🚀
                 </h2>
                 <p className="text-muted-foreground text-sm max-w-md mb-6">
-                  Your AI assistant powered by Solana payments! Each message
-                  costs only $0.01 USDC. Ask me anything - let's have some fun!
-                  ✨
+                  由Solana支付提供支持的人工智能助手！每条消息仅需0.01美元的USDC。有什么问题尽管问——让我们找点乐子吧！✨
                 </p>
                 <div className="flex flex-wrap gap-2 justify-center max-w-2xl">
                   <button
                     onClick={() =>
                       setInput(
-                        "Explain Solana in simple terms like I'm 5 years old"
+                        "用五岁小孩能听懂的简单语言解释一下索拉纳（Solana）是什么"
                       )
                     }
                     className="px-3 py-1.5 text-xs bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white rounded-full transition-all transform hover:scale-105"
                   >
-                    🧒 Solana for kids
+                    🧒 Solana 入门
                   </button>
                   <button
                     onClick={() =>
-                      setInput("What would happen if AI took over the world?")
+                      setInput("如果人工智能接管了世界，会发生什么？")
                     }
                     className="px-3 py-1.5 text-xs bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white rounded-full transition-all transform hover:scale-105"
                   >
-                    🤖 AI world takeover
+                    🤖 AI 接管世界
                   </button>
                   <button
                     onClick={() =>
-                      setInput("Tell me a funny joke about Solana")
+                      setInput("给我讲一个关于 Solana 的有趣笑话")
                     }
                     className="px-3 py-1.5 text-xs bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-white rounded-full transition-all transform hover:scale-105"
                   >
-                    😂 Solana jokes
+                    😂 Solana 笑话
                   </button>
 
                   <button
                     onClick={() =>
                       setInput(
-                        "Explain why cats would make terrible memecoin investors"
+                        "解释为什么猫会成为糟糕的迷因币投资者"
                       )
                     }
                     className="px-3 py-1.5 text-xs bg-gradient-to-r from-indigo-500 to-purple-500 hover:from-indigo-600 hover:to-purple-600 text-white rounded-full transition-all transform hover:scale-105"
                   >
-                    🐱 Cats vs crypto
+                    🐱 猫咪大战加密
                   </button>
                   <button
                     onClick={() =>
                       setInput(
-                        "What if pizza was used as money instead of dollars?"
+                        "如果用披萨代替美元作为货币会怎样？"
                       )
                     }
                     className="px-3 py-1.5 text-xs bg-gradient-to-r from-teal-500 to-blue-500 hover:from-teal-600 hover:to-blue-600 text-white rounded-full transition-all transform hover:scale-105"
                   >
-                    🍕 Pizza economy
+                    🍕 披萨经济
                   </button>
                   <button
                     onClick={() =>
                       setInput(
-                        "Why is Solana faster than my grandma's internet?"
+                        "为什么 Solana 比我奶奶的网络还要快？"
                       )
                     }
                     className="px-3 py-1.5 text-xs bg-gradient-to-r from-rose-500 to-pink-500 hover:from-rose-600 hover:to-pink-600 text-white rounded-full transition-all transform hover:scale-105"
                   >
-                    👵 Grandma's internet
+                    👵 奶奶的网络
                   </button>
                   <button
                     onClick={() =>
                       setInput(
-                        "Create a conspiracy theory or lore about Solana taking over the world!"
+                        "编一个关于 Solana 接管世界的阴谋论或传说！"
                       )
                     }
                     className="px-3 py-1.5 text-xs bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white rounded-full transition-all transform hover:scale-105"
                   >
-                    🕵️ Solana conspiracy
+                    🕵️ Solana 阴谋论
                   </button>
                 </div>
               </div>
@@ -198,9 +196,8 @@ export default function Home() {
                 {messages.map((message: any) => (
                   <div
                     key={message.id}
-                    className={`flex gap-4 ${
-                      message.role === "user" ? "justify-end" : "justify-start"
-                    }`}
+                    className={`flex gap-4 ${message.role === "user" ? "justify-end" : "justify-start"
+                      }`}
                   >
                     {message.role === "assistant" && (
                       <div className="flex-shrink-0 mt-1">
@@ -211,9 +208,8 @@ export default function Home() {
                     )}
 
                     <div
-                      className={`flex flex-col max-w-[85%] ${
-                        message.role === "user" ? "items-end" : "items-start"
-                      }`}
+                      className={`flex flex-col max-w-[85%] ${message.role === "user" ? "items-end" : "items-start"
+                        }`}
                     >
                       {message.parts.map((part: any, i: number) => {
                         switch (part.type) {
@@ -221,11 +217,10 @@ export default function Home() {
                             return (
                               <div
                                 key={`${message.id}-${i}`}
-                                className={`rounded-2xl px-4 py-3 shadow-sm ${
-                                  message.role === "user"
+                                className={`rounded-2xl px-4 py-3 shadow-sm ${message.role === "user"
                                     ? "bg-primary text-primary-foreground rounded-br-md"
                                     : "bg-secondary text-secondary-foreground rounded-bl-md"
-                                }`}
+                                  }`}
                               >
                                 <Response className="text-sm">
                                   {part.text}
@@ -346,18 +341,16 @@ export default function Home() {
                       paymentInfo.status !== "processing" && (
                         <div className="flex gap-4 justify-center">
                           <div
-                            className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs border ${
-                              paymentInfo.status === "error"
+                            className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs border ${paymentInfo.status === "error"
                                 ? "bg-red-50 text-red-700 border-red-200"
                                 : "bg-green-50 text-green-700 border-green-200"
-                            }`}
+                              }`}
                           >
                             <div
-                              className={`w-2 h-2 rounded-full ${
-                                paymentInfo.status === "error"
+                              className={`w-2 h-2 rounded-full ${paymentInfo.status === "error"
                                   ? "bg-red-400"
                                   : "bg-green-400"
-                              }`}
+                                }`}
                             ></div>
                             <span className="font-medium">
                               Payment{" "}
@@ -378,11 +371,10 @@ export default function Home() {
                                         paymentInfo.signature || ""
                                       )
                                     }
-                                    className={`font-mono hover:underline ${
-                                      paymentInfo.status === "error"
+                                    className={`font-mono hover:underline ${paymentInfo.status === "error"
                                         ? "text-red-600"
                                         : "text-green-600"
-                                    }`}
+                                      }`}
                                     title="Click to copy transaction signature"
                                   >
                                     {paymentInfo.signature.slice(0, 4)}...
@@ -395,11 +387,10 @@ export default function Home() {
                                     })}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className={`p-1 hover:bg-gray-100 rounded ${
-                                      paymentInfo.status === "error"
+                                    className={`p-1 hover:bg-gray-100 rounded ${paymentInfo.status === "error"
                                         ? "text-red-600"
                                         : "text-green-600"
-                                    }`}
+                                      }`}
                                     title="View transaction on Solscan"
                                   >
                                     <ExternalLink className="w-3 h-3" />
@@ -462,11 +453,10 @@ export default function Home() {
 
             {error && (
               <div
-                className={`mt-3 p-3 rounded-md text-sm border ${
-                  error.includes("Insufficient USDC balance")
+                className={`mt-3 p-3 rounded-md text-sm border ${error.includes("Insufficient USDC balance")
                     ? "bg-amber-50 text-amber-800 border-amber-200"
                     : "bg-red-50 text-red-700 border-red-200"
-                }`}
+                  }`}
               >
                 <div className="flex items-center gap-2">
                   {error.includes("Insufficient USDC balance") && (
