@@ -20,14 +20,14 @@ solanax402PaymentMiddleware = paymentMiddleware(
   address,
   {
     "/api/protected": {
-      price: "$0.01",
+      price: "$0.1",
       config: {
         description: "Access to protected content",
       },
       network: network as Network,
     },
     "/api/chat": {
-      price: "$0.01",
+      price: "$0.1",
       config: {
         description: "Access to AI chat model",
       },

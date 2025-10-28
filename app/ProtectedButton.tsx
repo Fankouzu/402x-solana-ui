@@ -63,7 +63,7 @@ export function ProtectedButton() {
       disabled={loading}
       className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-blue-600 text-white gap-2 hover:bg-blue-700 font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 disabled:opacity-50 disabled:cursor-not-allowed"
     >
-      {loading ? "Processing Payment..." : "Access Protected Content ($0.01)"}
+      {loading ? "Processing Payment..." : "Access Protected Content ($0.1)"}
     </button>
   );
 }

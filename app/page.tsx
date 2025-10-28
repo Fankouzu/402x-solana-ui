@@ -153,7 +153,7 @@ export default function Home() {
                   Welcome to Solana AI Chat! 🚀
                 </h2>
                 <p className="text-muted-foreground text-sm max-w-md mb-6">
-                  由Solana支付提供支持的人工智能助手！每条消息仅需0.01美元的USDC。有什么问题尽管问——让我们找点乐子吧！✨
+                  由Solana支付提供支持的人工智能助手！每条消息仅需0.1美元的USDC。有什么问题尽管问——让我们找点乐子吧！✨
                 </p>
                 <div className="flex flex-wrap gap-2 justify-center max-w-2xl">
                   <button
@@ -281,7 +281,7 @@ export default function Home() {
                               className="w-3 h-3"
                             />
                             <span className="font-medium">Paid with USDC</span>
-                            <span className="font-mono">$0.01</span>
+                            <span className="font-mono">$0.1</span>
                             <span className="text-gray-400">•</span>
 
                             <div className="flex items-center gap-1">

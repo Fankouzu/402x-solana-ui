@@ -32,7 +32,7 @@ export function useProtectedChat(): UseProtectedChatReturn {
   const [status, setStatus] = useState<"idle" | "loading" | "error">("idle");
   const [error, setError] = useState<string | null>(null);
   const [paymentInfo, setPaymentInfo] = useState<PaymentInfo>({
-    amount: "$0.01",
+    amount: "$0.1",
     signature: undefined,
     status: null,
   });
@@ -49,7 +49,7 @@ export function useProtectedChat(): UseProtectedChatReturn {
       }
 
       // Check USDC balance before proceeding
-      const requiredAmount = 0.01; // $0.01 as specified in middleware
+      const requiredAmount = 0.1; // $0.1 as specified in middleware
       try {
         const keypairAddress = address(signer.address);
         const balance = await getDevnetUSDCBalance(keypairAddress);
@@ -76,7 +76,7 @@ export function useProtectedChat(): UseProtectedChatReturn {
       setStatus("loading");
       setError(null);
       setPaymentInfo({
-        amount: "$0.01",
+        amount: "$0.1",
         signature: undefined,
         status: "processing",
       });
@@ -122,14 +122,14 @@ export function useProtectedChat(): UseProtectedChatReturn {
           currentTxSignature = paymentResponse.transaction || undefined;
           if (paymentResponse.success) {
             setPaymentInfo({
-              amount: "$0.01",
+              amount: "$0.1",
               signature: paymentResponse.transaction || undefined,
               status: "completed",
             });
           }
           if (paymentResponse.success == false) {
             setPaymentInfo({
-              amount: "$0.01",
+              amount: "$0.1",
               signature: paymentResponse.transaction || undefined,
               status: "error",
             });
@@ -209,7 +209,7 @@ export function useProtectedChat(): UseProtectedChatReturn {
         setError(err instanceof Error ? err.message : "Unknown error");
         setStatus("error");
         setPaymentInfo({
-          amount: "$0.01",
+          amount: "$0.1",
           signature: undefined,
           status: null,
         });

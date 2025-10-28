@@ -12,7 +12,7 @@
 - **Real-time Balance Display**：实时更新 USDC 余额，并支持手动刷新
 
 ### 🤖 AI Chat 界面
-- **Pay-per-message**：通过 x402 protocol 为每条消息支付 0.01 美元 USDC
+- **Pay-per-message**：通过 x402 protocol 为每条消息支付 0.1 美元 USDC
 - **Streaming Responses**：实时流式返回 AI 回复
 - **Balance Validation**：请求前预检余额以确保资金充足
 - **Payment Confirmation**：直观展示成功的 x402 支付
@@ -65,7 +65,7 @@
 
 ### Payment Middleware (`middleware.ts`)
 为受保护的路由实现 HTTP 402 Payment Required：
-- `/api/chat` - 每条消息 0.01 美元
+- `/api/chat` - 每条消息 0.1 美元
 - 支付校验与处理
 - 生成交易签名
 
@@ -114,7 +114,7 @@ pnpm dev
 1. **Connect Wallet**：点击“Connect Wallet”连接 Solana 钱包
 2. **Generate Local Keypair**：生成用于支付的本地密钥对
 3. **Transfer USDC**：将 USDC 从钱包转入本地密钥对
-4. **Start Chatting**：向 AI 发送消息（每条消耗 0.01 美元 USDC）
+4. **Start Chatting**：向 AI 发送消息（每条消耗 0.1 美元 USDC）
 5. **View Transactions**：点击交易签名在 Solscan 查看详情
 
 ### 配置
@@ -122,11 +122,11 @@ pnpm dev
 支付中间件位于 `middleware.ts`：
 - **Resource Wallet**：`Du3X3wKN3LHfSbXtX2PW5jhnSHit8j8NSb19VZW6V9mu`
 - **Network**：`solana-devnet`
-- **Price per message**：`$0.01`
+- **Price per message**：`$0.1`
 
 ## 支付流程
 
-1. **Balance Check**：校验 USDC 余额是否满足 0.01 美元
+1. **Balance Check**：校验 USDC 余额是否满足 0.1 美元
 2. **Payment Processing**：创建并签署支付交易
 3. **API Request**：携带支付头信息发起聊天请求
 4. **Transaction Confirmation**：接收交易签名
